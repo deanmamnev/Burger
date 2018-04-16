@@ -41,6 +41,13 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
+  selectAll: function(tableInput, colToSearch, valOfCol) {
+    var queryString = "SELECT * FROM ?? WHERE ?? = ?";
+    connection.query(queryString, [tableInput, colToSearch, valOfCol], function(err, result) {
+      if (err) throw err;
+      console.log(result);
+    });
+  },
   all: function(tableInput, cb) {
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
@@ -103,5 +110,5 @@ var orm = {
   }
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (burger.js).
 module.exports = orm;
